@@ -8,8 +8,8 @@ namespace GuardaPass
 {
     class Controller
     {
-        public String nombreUsuario { get; set; };
-        public String password { get; set; };
+        public String nombreUsuario { get; set; }
+        public String password { get; set; }
 
 
         public void CrearNuevoUsuario(String nom, String pass)
@@ -32,12 +32,12 @@ namespace GuardaPass
 
         public Boolean AnadirContrasena()
         {
-
+            return true;
         }
 
         public Boolean ListarContrasena()
         {
-
+            return true;
         }
     }
 }
