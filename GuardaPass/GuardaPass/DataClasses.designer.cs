@@ -22,6 +22,7 @@ namespace GuardaPass
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="rumurciata")]
 	public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,7 +30,16 @@ namespace GuardaPass
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void InsertTBL_GUARDA_PASS(TBL_GUARDA_PASS instance);
+    partial void UpdateTBL_GUARDA_PASS(TBL_GUARDA_PASS instance);
+    partial void DeleteTBL_GUARDA_PASS(TBL_GUARDA_PASS instance);
     #endregion
+		
+		public DataClassesDataContext() : 
+				base(global::GuardaPass.Properties.Settings.Default.rumurciataConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public DataClassesDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -53,6 +63,148 @@ namespace GuardaPass
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<TBL_GUARDA_PASS> TBL_GUARDA_PASS
+		{
+			get
+			{
+				return this.GetTable<TBL_GUARDA_PASS>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_GUARDA_PASS")]
+	public partial class TBL_GUARDA_PASS : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _USUARIO;
+		
+		private string _PASS;
+		
+		private string _DESCRIPCION;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnUSUARIOChanging(string value);
+    partial void OnUSUARIOChanged();
+    partial void OnPASSChanging(string value);
+    partial void OnPASSChanged();
+    partial void OnDESCRIPCIONChanging(string value);
+    partial void OnDESCRIPCIONChanged();
+    #endregion
+		
+		public TBL_GUARDA_PASS()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USUARIO", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string USUARIO
+		{
+			get
+			{
+				return this._USUARIO;
+			}
+			set
+			{
+				if ((this._USUARIO != value))
+				{
+					this.OnUSUARIOChanging(value);
+					this.SendPropertyChanging();
+					this._USUARIO = value;
+					this.SendPropertyChanged("USUARIO");
+					this.OnUSUARIOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PASS", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PASS
+		{
+			get
+			{
+				return this._PASS;
+			}
+			set
+			{
+				if ((this._PASS != value))
+				{
+					this.OnPASSChanging(value);
+					this.SendPropertyChanging();
+					this._PASS = value;
+					this.SendPropertyChanged("PASS");
+					this.OnPASSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPCION", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string DESCRIPCION
+		{
+			get
+			{
+				return this._DESCRIPCION;
+			}
+			set
+			{
+				if ((this._DESCRIPCION != value))
+				{
+					this.OnDESCRIPCIONChanging(value);
+					this.SendPropertyChanging();
+					this._DESCRIPCION = value;
+					this.SendPropertyChanged("DESCRIPCION");
+					this.OnDESCRIPCIONChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
